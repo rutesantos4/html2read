@@ -1,9 +1,10 @@
 <script>
-	import { CardNoImage, CardWithImage, Heading, RedBall } from '@components';
+	import { CardNoImage, CardWithImage, Heading, RedBall, Body } from '@components';
 	import { LL } from '@i18n';
 </script>
 
 <Heading value="html2read" />
+<Body />
 <div class="flex flex-row justify-evenly">
 	<CardNoImage />
 	<CardWithImage />
