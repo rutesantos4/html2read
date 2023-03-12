@@ -42,8 +42,6 @@ To deploy your app:
 npm run deploy
 ```
 
-
-
 ### Contact
 
 This template was prepared by:
