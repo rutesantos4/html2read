@@ -5,7 +5,10 @@
 	export let read: Read;
 
 	async function handleSubmitRead() {
+		read.tags = read.tags + ', ' + read.keewords;
+		read.date = new Date();
 		console.log(read);
+		console.log(read.date);
 	}
 </script>
 
