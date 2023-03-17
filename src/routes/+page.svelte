@@ -1,14 +1,11 @@
 <script>
-	import { CardNoImage, CardWithImage, Heading, RedBall } from '@components';
+	import { Heading, Body } from '@components';
 	import { LL } from '@i18n';
 </script>
 
 <Heading value="html2read" />
-<div class="flex flex-row justify-evenly">
-	<CardNoImage />
-	<CardWithImage />
-</div>
+<Body />
+
 <div class="flex flex-col justify-center">
-	<RedBall />
 	<p class="text-center">{$LL.greetings()}</p>
 </div>
