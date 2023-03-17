@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { TextInput } from '@components';
+	import { TextInput, CheckboxInput } from '@components';
 	import type { Read } from '@http';
 
 	export let read: Read;
@@ -17,6 +17,7 @@
 			<TextInput label="Introduction" bind:value={read.introduction} multiline />
 			<TextInput label="Summary" bind:value={read.summary} multiline />
 			<TextInput label="Keewords" bind:value={read.keewords} />
+			<CheckboxInput label="Draft?" bind:checked={read.draft} />
 			<div class="flex flex-col justify-center mt-8">
 				<button class="button btn btn-secondary" on:click> Generate Read </button>
 			</div>
