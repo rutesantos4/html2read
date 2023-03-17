@@ -6,6 +6,7 @@ export type Read = {
 	keewords: string;
 	content: string;
 	url: string;
+	draft: boolean;
 	document: Document;
 };
 
@@ -18,6 +19,7 @@ export function createReadFromDocument(url: string, document: Document): Read {
 		keewords: getAttributeOfElement(document, 'keewords', 'content'),
 		content: document.body.innerHTML,
 		url: url,
+		draft: false,
 		document: document
 	};
 	return result;
