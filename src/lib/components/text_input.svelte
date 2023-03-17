@@ -2,14 +2,21 @@
 	export let label = '';
 	export let value = '';
 	export let multiline = false;
+	export let required = false;
 </script>
 
-<div class="w-full text-center flex flex-row input-group">
+<div class="w-full text-center flex-row input-group mb-2">
 	<div class="input-group-prepend">
 		<span class="input-group-text">{label}</span>
 	</div>
 	{#if multiline}
-		<textarea class="form-control" id="basic-url" aria-describedby="basic-addon3" bind:value />
+		<textarea
+			class="form-control"
+			id="basic-url"
+			aria-describedby="basic-addon3"
+			bind:value
+			required
+		/>
 	{:else}
 		<input
 			type="text"
@@ -17,6 +24,7 @@
 			id="basic-url"
 			aria-describedby="basic-addon3"
 			bind:value
+			required
 		/>
 	{/if}
 </div>
