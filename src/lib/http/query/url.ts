@@ -15,7 +15,7 @@ export class URLQueryImpl implements Query {
 
 				return Promise.resolve(
 					response.text().then((html) => {
-						return createReadFromDocument(new DOMParser().parseFromString(html, 'text/html'));
+						return createReadFromDocument(url, new DOMParser().parseFromString(html, 'text/html'));
 					})
 				);
 			});
