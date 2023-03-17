@@ -12,11 +12,11 @@
 <div class="card">
 	<div class="card-body">
 		<form on:submit|preventDefault={handleSubmitRead} action=".">
-			<TextInput label="Title" bind:value={read.title} required />
-			<TextInput label="Description" bind:value={read.description} multiline required />
-			<TextInput label="Introduction" bind:value={read.introduction} multiline required />
-			<TextInput label="Summary" bind:value={read.summary} multiline required />
-			<TextInput label="Keewords" bind:value={read.keewords} required />
+			<TextInput label="Title" bind:value={read.title} />
+			<TextInput label="Description" bind:value={read.description} multiline />
+			<TextInput label="Introduction" bind:value={read.introduction} multiline />
+			<TextInput label="Summary" bind:value={read.summary} multiline />
+			<TextInput label="Keewords" bind:value={read.keewords} />
 			<div class="flex flex-col justify-center mt-8">
 				<button class="button btn btn-secondary" on:click> Generate Read </button>
 			</div>

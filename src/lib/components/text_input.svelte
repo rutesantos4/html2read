@@ -2,7 +2,6 @@
 	export let label = '';
 	export let value = '';
 	export let multiline = false;
-	export let required = false;
 </script>
 
 <div class="w-full text-center flex-row input-group mb-2">
