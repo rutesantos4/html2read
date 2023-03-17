@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { TextInput } from '@components';
+	import { TextInput, ReadForm } from '@components';
 	import { URLQueryImpl, FetchClient, type Read } from '@http';
 
 	let readURL = '';
@@ -14,11 +14,7 @@
 			return;
 		}
 		read = result;
-		console.log(read.title);
-		console.log(read.description);
-		console.log(read.introduction);
-		console.log(read.summary);
-		console.log(read.keewords);
+		console.log(read);
 	}
 </script>
 
@@ -26,6 +22,12 @@
 	<form on:submit|preventDefault={handleSubmitUrl} action=".">
 		<TextInput label="Read URL" bind:value={readURL} />
 	</form>
+
+	{#if read != undefined}
+		<section id="form">
+			<ReadForm bind:read />
+		</section>
+	{/if}
 </section>
 
 <style>
