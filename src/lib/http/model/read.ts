@@ -31,6 +31,18 @@ export function createReadFromDocument(url: string, document: Document): Read {
 	return result;
 }
 
+export function getTagsFormatted(read: Read): string {
+	return formatArray(read.tags.split(','));
+}
+
+export function getKeewordsFormatted(read: Read): string {
+	return formatArray(read.keewords.split(','));
+}
+
+export function getDateFormatted(read: Read): string {
+	return read.date.toISOString();
+}
+
 function getAttributeOfElement(
 	document: Document,
 	elementName: string,
@@ -46,4 +58,10 @@ function getAttributeOfElement(
 	}
 	const attribute = element.getAttribute(attributeName);
 	return attribute == null ? '' : attribute;
+}
+
+function formatArray(array: string[]): string {
+	let result = array.join("', '");
+	result = "'" + result + "'";
+	return result;
 }
