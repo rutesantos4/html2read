@@ -9,6 +9,7 @@ const en = {
 	introductionLabel: 'Introduction',
 	summaryLabel: 'Summary',
 	keewordsLabel: 'Keewords',
+	keewordsTootipTitle: 'separate with comma (,)',
 	draftLabel: 'Draft',
 	generateButton: 'Generate Read'
 } satisfies BaseTranslation;

@@ -9,6 +9,7 @@ const pt = {
 	introductionLabel: 'Introdução',
 	summaryLabel: 'Resumo',
 	keewordsLabel: 'Palavra-chave',
+	keewordsTootipTitle: 'separa com virgulas (,)',
 	draftLabel: 'Rascunho',
 	generateButton: 'Gerar Read'
 } satisfies Translation;
