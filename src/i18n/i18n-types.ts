@@ -16,6 +16,38 @@ type RootTranslation = {
 	 * T​h​i​s​ ​p​r​o​j​e​c​t​ ​w​a​s​ ​g​e​n​e​r​a​t​e​d​ ​w​i​t​h​ ​d​a​r​t​-​p​a​c​o​t​e​s​/​.​b​r​i​c​k​s​:​ ​h​t​t​p​s​:​/​/​g​i​t​h​u​b​.​c​o​m​/​d​a​r​t​-​p​a​c​o​t​e​s​/​.​b​r​i​c​k​s​/​t​r​e​e​/​m​a​s​t​e​r​/​a​p​l​i​c​a​c​a​o​-​w​e​b
 	 */
 	greetings: string;
+	/**
+	 * R​e​a​d​ ​U​R​L
+	 */
+	urlLabel: string;
+	/**
+	 * T​i​t​l​e
+	 */
+	titleLabel: string;
+	/**
+	 * D​e​s​c​r​i​p​t​i​o​n
+	 */
+	descriptionLabel: string;
+	/**
+	 * I​n​t​r​o​d​u​c​t​i​o​n
+	 */
+	introductionLabel: string;
+	/**
+	 * S​u​m​m​a​r​y
+	 */
+	summaryLabel: string;
+	/**
+	 * K​e​e​w​o​r​d​s
+	 */
+	keewordsLabel: string;
+	/**
+	 * D​r​a​f​t
+	 */
+	draftLabel: string;
+	/**
+	 * G​e​n​e​r​a​t​e​ ​R​e​a​d
+	 */
+	generateButton: string;
 };
 
 export type TranslationFunctions = {
@@ -23,6 +55,38 @@ export type TranslationFunctions = {
 	 * This project was generated with dart-pacotes/.bricks: https://github.com/dart-pacotes/.bricks/tree/master/aplicacao-web
 	 */
 	greetings: () => LocalizedString;
+	/**
+	 * Read URL
+	 */
+	urlLabel: () => LocalizedString;
+	/**
+	 * Title
+	 */
+	titleLabel: () => LocalizedString;
+	/**
+	 * Description
+	 */
+	descriptionLabel: () => LocalizedString;
+	/**
+	 * Introduction
+	 */
+	introductionLabel: () => LocalizedString;
+	/**
+	 * Summary
+	 */
+	summaryLabel: () => LocalizedString;
+	/**
+	 * Keewords
+	 */
+	keewordsLabel: () => LocalizedString;
+	/**
+	 * Draft
+	 */
+	draftLabel: () => LocalizedString;
+	/**
+	 * Generate Read
+	 */
+	generateButton: () => LocalizedString;
 };
 
 export type Formatters = {};

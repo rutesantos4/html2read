@@ -1,9 +1,16 @@
 import type { Translation } from '../i18n-types';
 
 const pt = {
-	// this is an example Translation, just rename or delete this folder if you want
 	greetings:
-		'Este projeto foi criado com dart-pacotes/.bricks: https://github.com/dart-pacotes/.bricks/tree/master/aplicacao-web'
+		'Este projeto foi criado com dart-pacotes/.bricks: https://github.com/dart-pacotes/.bricks/tree/master/aplicacao-web',
+	urlLabel: 'URL do Read',
+	titleLabel: 'Titulo',
+	descriptionLabel: 'Descrição',
+	introductionLabel: 'Introdução',
+	summaryLabel: 'Resumo',
+	keewordsLabel: 'Palavra-chave',
+	draftLabel: 'Rascunho',
+	generateButton: 'Gerar Read'
 } satisfies Translation;
 
 export default pt;
