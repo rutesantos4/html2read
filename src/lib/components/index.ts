@@ -6,3 +6,4 @@ export { default as Body } from './body.svelte';
 export { default as ReadForm } from './read_form.svelte';
 export { default as TextInput } from './input/text_input.svelte';
 export { default as CheckboxInput } from './input/checkbox_input.svelte';
+export { default as ReadTemplateInput } from './input/read_template_input.svelte';
