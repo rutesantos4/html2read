@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { TextInput, CheckboxInput } from '@components';
+	import { LL } from '@i18n';
 	import type { Read } from '@http';
 
 	export let read: Read;
 
 	async function handleSubmitRead() {
-		read.tags = read.tags + ', ' + read.keewords;
+		read.tags = read.categories + ', ' + read.keewords;
 		read.date = new Date();
 		console.log(read);
 		console.log(read.date);
@@ -15,14 +16,18 @@
 <div class="card">
 	<div class="card-body">
 		<form on:submit|preventDefault={handleSubmitRead} action=".">
-			<TextInput label="Title" bind:value={read.title} />
-			<TextInput label="Description" bind:value={read.description} multiline />
-			<TextInput label="Introduction" bind:value={read.introduction} multiline />
-			<TextInput label="Summary" bind:value={read.summary} multiline />
-			<TextInput label="Keewords" bind:value={read.keewords} />
-			<CheckboxInput label="Draft?" bind:checked={read.draft} />
+			<TextInput label={$LL.titleLabel()} bind:value={read.title} />
+			<TextInput label={$LL.descriptionLabel()} bind:value={read.description} multiline />
+			<TextInput label={$LL.introductionLabel()} bind:value={read.introduction} multiline />
+			<TextInput label={$LL.summaryLabel()} bind:value={read.summary} multiline />
+			<TextInput
+				label={$LL.keewordsLabel()}
+				title={$LL.keewordsTootipTitle()}
+				bind:value={read.keewords}
+			/>
+			<CheckboxInput label={$LL.draftLabel()} bind:checked={read.draft} />
 			<div class="flex flex-col justify-center mt-8">
-				<button class="button btn btn-secondary" on:click> Generate Read </button>
+				<button class="button btn btn-secondary" on:click>{$LL.generateButton()}</button>
 			</div>
 		</form>
 	</div>

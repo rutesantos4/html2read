@@ -1,6 +1,7 @@
 <script>
 	export let label = '';
 	export let value = '';
+	export let title = '';
 	export let multiline = false;
 </script>
 
@@ -13,6 +14,9 @@
 			class="form-control"
 			id="basic-url"
 			aria-describedby="basic-addon3"
+			data-toggle="tooltip"
+			data-placement="bottom"
+			{title}
 			bind:value
 			required
 		/>
@@ -22,6 +26,9 @@
 			class="form-control"
 			id="basic-url"
 			aria-describedby="basic-addon3"
+			data-toggle="tooltip"
+			data-placement="bottom"
+			{title}
 			bind:value
 			required
 		/>

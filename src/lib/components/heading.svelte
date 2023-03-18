@@ -3,7 +3,7 @@
 </script>
 
 <h1 id="title" class="text-4xl text-500 text-center">
-	Hello {value}!
+	{value}!
 </h1>
 
 <style>

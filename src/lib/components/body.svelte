@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { TextInput, ReadForm } from '@components';
+	import { LL } from '@i18n';
 	import { URLQueryImpl, FetchClient, type Read } from '@http';
 
 	let readURL = '';
@@ -20,7 +21,7 @@
 
 <section id="body">
 	<form on:submit|preventDefault={handleSubmitUrl} action=".">
-		<TextInput label="Read URL" bind:value={readURL} />
+		<TextInput label={$LL.urlLabel()} bind:value={readURL} />
 	</form>
 
 	{#if read != undefined}
