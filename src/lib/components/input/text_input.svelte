@@ -16,7 +16,7 @@
 			aria-describedby="basic-addon3"
 			data-toggle="tooltip"
 			data-placement="bottom"
-			title="{title}"
+			{title}
 			bind:value
 			required
 		/>
@@ -28,7 +28,7 @@
 			aria-describedby="basic-addon3"
 			data-toggle="tooltip"
 			data-placement="bottom"
-			title="{title}"
+			{title}
 			bind:value
 			required
 		/>
