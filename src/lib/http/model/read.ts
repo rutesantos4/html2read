@@ -7,6 +7,9 @@ export type Read = {
 	content: string;
 	url: string;
 	draft: boolean;
+	date: Date;
+	categories: string;
+	tags: string;
 	document: Document;
 };
 
@@ -20,6 +23,9 @@ export function createReadFromDocument(url: string, document: Document): Read {
 		content: document.body.innerHTML,
 		url: url,
 		draft: false,
+		date: new Date(),
+		categories: 'reads',
+		tags: '',
 		document: document
 	};
 	return result;
