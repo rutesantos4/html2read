@@ -8,8 +8,8 @@
 
 <TextInput label={$LL.titleLabel()} bind:value={read.title} />
 <TextInput label={$LL.descriptionLabel()} bind:value={read.description} multiline />
-<TextInput label={$LL.introductionLabel()} bind:value={read.introduction} multiline />
 <TextInput label={$LL.summaryLabel()} bind:value={read.summary} multiline />
+<TextInput label={$LL.introductionLabel()} bind:value={read.introduction} multiline />
 <TextInput
 	label={$LL.keewordsLabel()}
 	title={$LL.keewordsTootipTitle()}

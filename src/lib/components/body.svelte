@@ -3,31 +3,42 @@
 	import { LL } from '@i18n';
 	import { URLQueryImpl, FetchClient, type Read } from '@http';
 	import { getTagsFormatted, getKeewordsFormatted, getDateFormatted } from '@http';
+	import TurndownService from 'turndown';
 
-	let readURL: string = '';
+	let readURL: string;
 	let read: Read;
 	let readtemplate: string;
 
 	let showForm = false;
 	let showTemplate = false;
+
 	const query = new URLQueryImpl(new FetchClient());
+	const turndownService = new TurndownService();
 
 	async function handleSubmitUrl() {
-		console.info(readURL);
 		const result = await query.getHTML(readURL);
 		if (typeof result === 'number') {
 			return;
 		}
 		read = result;
-		console.log(read);
 		showForm = true;
 	}
+
+	function addPrefix(str: string, prefix: string): string {
+		return str
+			.split('\n')
+			.map((s) => `${prefix} ${s}`)
+			.join('\n');
+	}
+
 	async function handleSubmitRead() {
 		read.tags = read.categories + ', ' + read.keewords;
 		read.date = new Date();
-		console.log(read);
-		console.log(read.date);
+
 		showTemplate = true;
+
+		const contentMarkdown = addPrefix(turndownService.turndown(read.content), '>');
+
 		readtemplate = `---
 title: "${read.title}"
 description: '${read.description}'
@@ -45,7 +56,7 @@ ${read.url}
 
 ---
 
-> ${read.content}`;
+${contentMarkdown}`;
 	}
 </script>
 
@@ -67,9 +78,11 @@ ${read.url}
 	{/if}
 
 	{#if showTemplate}
-		<div class="card">
+		<div class="card mt-2">
 			<div class="card-body">
-				<ReadTemplateInput bind:readtemplate />
+				<section id="read-template-input">
+					<ReadTemplateInput bind:readtemplate />
+				</section>
 			</div>
 		</div>
 	{/if}
@@ -81,5 +94,10 @@ ${read.url}
 	}
 	.card {
 		max-width: none;
+		padding: 0 !important;
+	}
+	#read-template-input,
+	#form {
+		padding: 2%;
 	}
 </style>
