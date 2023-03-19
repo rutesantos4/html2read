@@ -61,6 +61,7 @@ function getAttributeOfElement(
 }
 
 function formatArray(array: string[]): string {
+	array = array.map((element) => element.trim());
 	let result = array.join("', '");
 	result = "'" + result + "'";
 	return result;
