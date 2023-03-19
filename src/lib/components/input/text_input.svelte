@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let label = '';
 	export let value = '';
 	export let title = '';
@@ -12,7 +12,7 @@
 	{#if multiline}
 		<textarea
 			class="form-control"
-			id="basic-url"
+			id={label}
 			aria-describedby="basic-addon3"
 			data-toggle="tooltip"
 			data-placement="bottom"
@@ -24,7 +24,7 @@
 		<input
 			type="text"
 			class="form-control"
-			id="basic-url"
+			id={label}
 			aria-describedby="basic-addon3"
 			data-toggle="tooltip"
 			data-placement="bottom"
@@ -44,6 +44,6 @@
 		padding: 0.5%;
 	}
 	textarea {
-		height: 8rem;
+		min-height: 8rem;
 	}
 </style>
