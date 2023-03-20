@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { TextInput, ReadForm, ReadTemplateInput } from '@components';
+	import { TextInput, ReadForm, ReadTemplateInput, Error } from '@components';
 	import { LL } from '@i18n';
 	import { URLQueryImpl, FetchClient, type Read } from '@http';
 	import { getTagsFormatted, getKeewordsFormatted, getDateFormatted } from '@http';
@@ -9,19 +9,33 @@
 	let read: Read;
 	let readtemplate: string;
 
+	let isEditingReadURL = true;
 	let showForm = false;
+	let submitUrlError = false;
 	let showTemplate = false;
 
 	const query = new URLQueryImpl(new FetchClient());
 	const turndownService = new TurndownService();
 
+	$: {
+		isEditingReadURL = false;
+	}
+
+	async function handleEditingUrl(event: CustomEvent) {
+		isEditingReadURL = event.detail.isEditing;
+	}
+
 	async function handleSubmitUrl() {
 		const result = await query.getHTML(readURL);
+		isEditingReadURL = false;
 		if (typeof result === 'number') {
+			showForm = false;
+			submitUrlError = true;
 			return;
 		}
 		read = result;
 		showForm = true;
+		submitUrlError = false;
 	}
 
 	function addPrefix(str: string, prefix: string): string {
@@ -36,7 +50,7 @@
 		read.date = new Date();
 
 		showTemplate = true;
-
+		isEditingReadURL = false;
 		const contentMarkdown = addPrefix(turndownService.turndown(read.content), '>');
 
 		readtemplate = `---
@@ -62,8 +76,11 @@ ${contentMarkdown}`;
 
 <section id="body">
 	<form on:submit|preventDefault={handleSubmitUrl} action=".">
-		<TextInput label={$LL.urlLabel()} bind:value={readURL} />
+		<TextInput label={$LL.urlLabel()} bind:value={readURL} on:onInput={handleEditingUrl} />
 	</form>
+	{#if submitUrlError && !isEditingReadURL}
+		<Error message={`Error. Not possible to call '${readURL}'`} />
+	{/if}
 
 	{#if read != undefined && showForm}
 		<div class="card">

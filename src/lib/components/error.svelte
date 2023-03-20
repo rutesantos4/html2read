@@ -3,12 +3,12 @@
 </script>
 
 <div class="alert alert-danger" role="alert">
-    {message}
+	{message}
 </div>
 
 <style>
-    .alert-danger{
-        --tw-bg-opacity: 0.5;
-        background-color: rgb(var(--secondary)/var(--tw-bg-opacity));
-    }
+	.alert-danger {
+		--tw-bg-opacity: 0.5;
+		background-color: rgb(var(--secondary) / var(--tw-bg-opacity));
+	}
 </style>
