@@ -17,10 +17,6 @@
 	const query = new URLQueryImpl(new FetchClient());
 	const turndownService = new TurndownService();
 
-	$: {
-		isEditingReadURL = false;
-	}
-
 	async function handleEditingUrl(event: CustomEvent) {
 		isEditingReadURL = event.detail.isEditing;
 	}
