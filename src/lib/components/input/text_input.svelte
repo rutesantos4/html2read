@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	export let label = '';
 	export let value = '';
 	export let title = '';
 	export let multiline = false;
+
+	const dispatch = createEventDispatcher();
+
+	function onInput() {
+		dispatch('onInput', {
+			isEditing: true
+		});
+	}
 </script>
 
 <div class="w-full text-center flex-row input-group mb-2">
@@ -31,6 +40,7 @@
 			{title}
 			bind:value
 			required
+			on:input={onInput}
 		/>
 	{/if}
 </div>
