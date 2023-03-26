@@ -11,6 +11,7 @@ export type Read = {
 	categories: string;
 	tags: string;
 	document: Document;
+	template: string;
 };
 
 export function createReadFromDocument(url: string, document: Document): Read {
@@ -26,20 +27,56 @@ export function createReadFromDocument(url: string, document: Document): Read {
 		date: new Date(),
 		categories: 'reads',
 		tags: '',
-		document: document
+		document: document,
+		template: ''
 	};
 	return result;
 }
 
-export function getTagsFormatted(read: Read): string {
+export function setReadTemplate(read: Read, contentMarkdown: string): Read {
+	read.tags = read.categories + ', ' + read.keewords;
+	read.date = new Date();
+
+	contentMarkdown = addPrefix(contentMarkdown, '>');
+
+	read.template = `---
+title: "${read.title}"
+description: '${read.description}'
+summary: "${read.summary}"
+keywords: [${getKeewordsFormatted(read)}]
+date: ${getDateFormatted(read)}
+draft: ${read.draft}
+categories: ['${read.categories}']
+tags: [${getTagsFormatted(read)}]
+---
+
+${read.introduction}
+
+${read.url}
+
+---
+
+${contentMarkdown}`;
+
+	return read;
+}
+
+function addPrefix(str: string, prefix: string): string {
+	return str
+		.split('\n')
+		.map((s) => `${prefix} ${s}`)
+		.join('\n');
+}
+
+function getTagsFormatted(read: Read): string {
 	return formatArray(read.tags.split(','));
 }
 
-export function getKeewordsFormatted(read: Read): string {
+function getKeewordsFormatted(read: Read): string {
 	return formatArray(read.keewords.split(','));
 }
 
-export function getDateFormatted(read: Read): string {
+function getDateFormatted(read: Read): string {
 	return read.date.toISOString();
 }
 
