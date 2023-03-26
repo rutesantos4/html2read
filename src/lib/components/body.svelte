@@ -1,20 +1,14 @@
 <script lang="ts">
 	import { TextInput, ReadForm, ReadTemplateInput, Error } from '@components';
 	import { LL } from '@i18n';
-	import { URLQueryImpl, FetchClient, type Read } from '@http';
-	import { getTagsFormatted, getKeewordsFormatted, getDateFormatted } from '@http';
+	import { setReadTemplate } from '@http';
 	import TurndownService from 'turndown';
+	import { ReadStore } from '@stores';
 
 	let readURL: string;
-	let read: Read;
-	let readtemplate: string;
 
 	let isEditingReadURL = true;
-	let showForm = false;
-	let submitUrlError = false;
-	let showTemplate = false;
 
-	const query = new URLQueryImpl(new FetchClient());
 	const turndownService = new TurndownService();
 
 	async function handleEditingUrl(event: CustomEvent) {
@@ -22,51 +16,19 @@
 	}
 
 	async function handleSubmitUrl() {
-		const result = await query.getHTML(readURL);
+		ReadStore.reset();
+		ReadStore.submittedURL(readURL);
 		isEditingReadURL = false;
-		if (typeof result === 'number') {
-			showForm = false;
-			submitUrlError = true;
-			return;
-		}
-		read = result;
-		showForm = true;
-		submitUrlError = false;
-	}
-
-	function addPrefix(str: string, prefix: string): string {
-		return str
-			.split('\n')
-			.map((s) => `${prefix} ${s}`)
-			.join('\n');
 	}
 
 	async function handleSubmitRead() {
-		read.tags = read.categories + ', ' + read.keewords;
-		read.date = new Date();
+		let read = $ReadStore.value;
+		const contentMarkdown = turndownService.turndown(read.content);
 
-		showTemplate = true;
+		setReadTemplate(read, contentMarkdown);
+		ReadStore.submittedForm(read);
+
 		isEditingReadURL = false;
-		const contentMarkdown = addPrefix(turndownService.turndown(read.content), '>');
-
-		readtemplate = `---
-title: "${read.title}"
-description: '${read.description}'
-summary: "${read.summary}"
-keywords: [${getKeewordsFormatted(read)}]
-date: ${getDateFormatted(read)}
-draft: ${read.draft}
-categories: ['${read.categories}']
-tags: [${getTagsFormatted(read)}]
----
-
-${read.introduction}
-
-${read.url}
-
----
-
-${contentMarkdown}`;
 	}
 </script>
 
@@ -74,27 +36,27 @@ ${contentMarkdown}`;
 	<form on:submit|preventDefault={handleSubmitUrl} action=".">
 		<TextInput label={$LL.urlLabel()} bind:value={readURL} on:onInput={handleEditingUrl} />
 	</form>
-	{#if submitUrlError && !isEditingReadURL}
+	{#if $ReadStore.showingURLError && !isEditingReadURL}
 		<Error message={`Error. Not possible to call '${readURL}'`} />
 	{/if}
 
-	{#if read != undefined && showForm}
+	{#if $ReadStore.showingForm || $ReadStore.showingTemplate}
 		<div class="card">
 			<div class="card-body">
 				<form on:submit|preventDefault={handleSubmitRead} action=".">
 					<section id="form">
-						<ReadForm bind:read />
+						<ReadForm read={$ReadStore.value} />
 					</section>
 				</form>
 			</div>
 		</div>
 	{/if}
 
-	{#if showTemplate}
+	{#if $ReadStore.showingTemplate}
 		<div class="card mt-2">
 			<div class="card-body">
 				<section id="read-template-input">
-					<ReadTemplateInput bind:readtemplate />
+					<ReadTemplateInput readtemplate={$ReadStore.value.template} />
 				</section>
 			</div>
 		</div>
