@@ -1,10 +1,10 @@
-import type { FetchClient } from '../client';
+import type { RelayClient } from '../client';
 import type { Read } from '../model';
 import { createReadFromDocument } from '../model';
 import type { Query } from './interface';
 
 export class URLQueryImpl implements Query {
-	constructor(private readonly client: FetchClient) {}
+	constructor(private readonly client: RelayClient) {}
 
 	async getHTML(url: string): Promise<number | Read> {
 		try {

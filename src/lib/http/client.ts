@@ -1,3 +1,5 @@
+import { env } from '$env/dynamic/public';
+
 export interface Client {
 	get(url: string): Promise<Response>;
 }
@@ -13,13 +15,32 @@ export class FetchClient implements Client {
 		return response;
 	}
 
-	private request(request: Request): Promise<Response> {
+	protected request(request: Request): Promise<Response> {
 		const url = request.url;
 
 		const fetchRequest = <RequestInit>{
 			method: request.method
 		};
 
+		return fetch(url, fetchRequest);
+	}
+}
+
+export class RelayClient extends FetchClient {
+	protected request(request: Request): Promise<Response> {
+		const url = <string>env.PUBLIC_RELAY_URL;
+
+		const headers = <HeadersInit>{
+			'x-relay-url': request.url
+		};
+
+		const fetchRequest = <RequestInit>{
+			method: request.method,
+			headers: headers
+		};
+
+		console.log(url);
+		console.log(fetchRequest);
 		return fetch(url, fetchRequest);
 	}
 }
