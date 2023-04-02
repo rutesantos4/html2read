@@ -12,7 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"deploy": "npx gh-pages -d build -b master -r https://github.com/<github_username>/<repo_hosting_static_pages> -t true --no-jekyll",
+		"deploy": "npx gh-pages -d build -b gh-pages -r https://github.com/rutesantos4/html2read -t true --nojekyll",
 		"typesafe-i18n": "typesafe-i18n"
 	},
 	"devDependencies": {
