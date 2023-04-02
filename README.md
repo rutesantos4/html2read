@@ -40,6 +40,8 @@ You can preview the production build with `npm run preview`.
 
 ## Deploy
 
+To deploy, you will need to install a fork of `gh-pages`. Do it via: `npm i @freitzzz/gh-pagez -g`
+
 To deploy your app:
 
 ```bash
