@@ -1,4 +1,4 @@
-import { URLQueryImpl, FetchClient, type Read, type Query } from '@http';
+import { URLQueryImpl, RelayClient, type Read, type Query } from '@http';
 import { State } from './state';
 import {
 	createStore,
@@ -16,7 +16,7 @@ function createReadStore() {
 	const store = createStore<Read>();
 	const subscribe = store.subscribe;
 
-	const query = new URLQueryImpl(new FetchClient());
+	const query = new URLQueryImpl(new RelayClient());
 
 	return {
 		subscribe,

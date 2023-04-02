@@ -12,7 +12,11 @@ This repository is configured with client-side Git hooks that automatically form
 
 ## Development
 
-Once you've created a project and installed dependencies with `npm install`, start a development server:
+Once you've created a project, install the dependencies with `npm install`.
+
+To properly run this, you will need to a setup a `.env` file. Start by creating a copy of the `.env.example` file and fill the variables with values appropriate for the execution context.
+
+Start a development server:
 
 ```bash
 npm run dev
