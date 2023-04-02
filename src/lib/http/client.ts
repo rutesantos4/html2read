@@ -39,8 +39,6 @@ export class RelayClient extends FetchClient {
 			headers: headers
 		};
 
-		console.log(url);
-		console.log(fetchRequest);
 		return fetch(url, fetchRequest);
 	}
 }
