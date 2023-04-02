@@ -17,10 +17,22 @@ export type Read = {
 export function createReadFromDocument(url: string, document: Document): Read {
 	const result: Read = {
 		title: document.head.getElementsByTagName('title')[0].innerText,
-		description: getAttributeOfElement(document, 'description', 'content'),
+		description: getAttributeOfPossibleElements(
+			[
+				getAttributeOfElementFromName(document, 'description'),
+				getAttributeOfElementFromProperty(document, 'og:description')
+			],
+			'content'
+		),
 		introduction: '',
 		summary: '',
-		keewords: getAttributeOfElement(document, 'keewords', 'content'),
+		keewords: getAttributeOfPossibleElements(
+			[
+				getAttributeOfElementFromName(document, 'keywords'),
+				getAttributeOfElementFromProperty(document, 'og:keywords')
+			],
+			'content'
+		),
 		content: document.body.innerHTML,
 		url: url,
 		draft: false,
@@ -80,12 +92,45 @@ function getDateFormatted(read: Read): string {
 	return read.date.toISOString();
 }
 
-function getAttributeOfElement(
-	document: Document,
-	elementName: string,
+function formatArray(array: string[]): string {
+	array = array.map((element) => element.trim());
+	let result = array.join("', '");
+	result = "'" + result + "'";
+	return result;
+}
+
+function getAttributeOfPossibleElements(
+	callbacks: Array<(attributeName: string) => string>,
 	attributeName: string
 ): string {
+	for (let index = 0; index < callbacks.length; index++) {
+		const callback = callbacks[index];
+
+		const attribute = callback(attributeName);
+		if (attribute && attribute.trim()) {
+			return attribute;
+		}
+	}
+	return '';
+}
+
+function getAttributeOfElementFromName(
+	document: Document,
+	elementName: string
+): (attributeName: string) => string {
 	const elements = document.getElementsByName(elementName);
+	return getAttributeOfElement(elements);
+}
+
+function getAttributeOfElementFromProperty(
+	document: Document,
+	propertyName: string
+): (attributeName: string) => string {
+	const elements = document.querySelectorAll(`[property="${propertyName}"]`);
+	return getAttributeOfElement(elements);
+}
+
+const getAttributeOfElement = (elements: NodeListOf<Element>) => (attributeName: string) => {
 	if (elements.length <= 0) {
 		return '';
 	}
@@ -95,11 +140,4 @@ function getAttributeOfElement(
 	}
 	const attribute = element.getAttribute(attributeName);
 	return attribute == null ? '' : attribute;
-}
-
-function formatArray(array: string[]): string {
-	array = array.map((element) => element.trim());
-	let result = array.join("', '");
-	result = "'" + result + "'";
-	return result;
-}
+};
