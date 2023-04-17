@@ -37,13 +37,13 @@ type RootTranslation = {
 	 */
 	summaryLabel: string;
 	/**
-	 * K​e​e​w​o​r​d​s
+	 * K​e​y​w​o​r​d​s
 	 */
-	keewordsLabel: string;
+	keywordsLabel: string;
 	/**
 	 * s​e​p​a​r​a​t​e​ ​w​i​t​h​ ​c​o​m​m​a​ ​(​,​)
 	 */
-	keewordsTootipTitle: string;
+	keywordsTootipTitle: string;
 	/**
 	 * D​r​a​f​t
 	 */
@@ -80,13 +80,13 @@ export type TranslationFunctions = {
 	 */
 	summaryLabel: () => LocalizedString;
 	/**
-	 * Keewords
+	 * Keywords
 	 */
-	keewordsLabel: () => LocalizedString;
+	keywordsLabel: () => LocalizedString;
 	/**
 	 * separate with comma (,)
 	 */
-	keewordsTootipTitle: () => LocalizedString;
+	keywordsTootipTitle: () => LocalizedString;
 	/**
 	 * Draft
 	 */

@@ -8,8 +8,8 @@ const en = {
 	descriptionLabel: 'Description',
 	introductionLabel: 'Introduction',
 	summaryLabel: 'Summary',
-	keewordsLabel: 'Keewords',
-	keewordsTootipTitle: 'separate with comma (,)',
+	keywordsLabel: 'Keywords',
+	keywordsTootipTitle: 'separate with comma (,)',
 	draftLabel: 'Draft',
 	generateButton: 'Generate Read'
 } satisfies BaseTranslation;

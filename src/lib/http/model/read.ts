@@ -3,7 +3,7 @@ export type Read = {
 	description: string;
 	introduction: string;
 	summary: string;
-	keewords: string;
+	keywords: string;
 	content: string;
 	url: string;
 	draft: boolean;
@@ -26,7 +26,7 @@ export function createReadFromDocument(url: string, document: Document): Read {
 		),
 		introduction: '',
 		summary: '',
-		keewords: getAttributeOfPossibleElements(
+		keywords: getAttributeOfPossibleElements(
 			[
 				getAttributeOfElementFromName(document, 'keywords'),
 				getAttributeOfElementFromProperty(document, 'og:keywords')
@@ -46,7 +46,7 @@ export function createReadFromDocument(url: string, document: Document): Read {
 }
 
 export function setReadTemplate(read: Read, contentMarkdown: string): Read {
-	read.tags = read.categories + ', ' + read.keewords;
+	read.tags = read.categories + ', ' + read.keywords;
 	read.date = new Date();
 
 	contentMarkdown = addPrefix(contentMarkdown, '>');
@@ -55,7 +55,7 @@ export function setReadTemplate(read: Read, contentMarkdown: string): Read {
 title: "${read.title}"
 description: '${read.description}'
 summary: "${read.summary}"
-keywords: [${getKeewordsFormatted(read)}]
+keywords: [${getKeywordsFormatted(read)}]
 date: ${getDateFormatted(read)}
 draft: ${read.draft}
 categories: ['${read.categories}']
@@ -84,8 +84,8 @@ function getTagsFormatted(read: Read): string {
 	return formatArray(read.tags.split(','));
 }
 
-function getKeewordsFormatted(read: Read): string {
-	return formatArray(read.keewords.split(','));
+function getKeywordsFormatted(read: Read): string {
+	return formatArray(read.keywords.split(','));
 }
 
 function getDateFormatted(read: Read): string {

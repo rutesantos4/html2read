@@ -8,8 +8,8 @@ const pt = {
 	descriptionLabel: 'Descrição',
 	introductionLabel: 'Introdução',
 	summaryLabel: 'Resumo',
-	keewordsLabel: 'Palavra-chave',
-	keewordsTootipTitle: 'separa com virgulas (,)',
+	keywordsLabel: 'Palavra-chave',
+	keywordsTootipTitle: 'separa com virgulas (,)',
 	draftLabel: 'Rascunho',
 	generateButton: 'Gerar Read'
 } satisfies Translation;
