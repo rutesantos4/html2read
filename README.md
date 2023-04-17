@@ -2,6 +2,8 @@
 
 Web frontend that converts HTML into a read template.
 
+This project was a request from João Freitas (@freitzzz) to facilitate the posts that he does on his [blog](https://joaomagfreitas.link/). Check https://joaomagfreitas.link/reads/ to see the application of this tool's result.
+
 ## Hooks
 
 This repository is configured with client-side Git hooks that automatically format + lint the codebase before each push. You can install it by running the following command:
