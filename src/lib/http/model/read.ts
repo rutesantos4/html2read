@@ -52,9 +52,9 @@ export function setReadTemplate(read: Read, contentMarkdown: string): Read {
 	contentMarkdown = addPrefix(contentMarkdown, '>');
 
 	read.template = `---
-title: "${read.title}"
-description: '${read.description}'
-summary: "${read.summary}"
+title: "${removeDoubleQuotes(read.title)}"
+description: "${removeDoubleQuotes(read.description)}"
+summary: "${removeDoubleQuotes(read.summary)}"
 keywords: [${getKeywordsFormatted(read)}]
 date: ${getDateFormatted(read)}
 draft: ${read.draft}
@@ -71,6 +71,12 @@ ${read.url}
 ${contentMarkdown}`;
 
 	return read;
+}
+
+export function removeDoubleQuotes(str: string): string{
+	const result = str.replaceAll('"', '\\"')
+	console.log(result)
+	return result;
 }
 
 function addPrefix(str: string, prefix: string): string {
