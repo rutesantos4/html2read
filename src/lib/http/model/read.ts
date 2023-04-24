@@ -73,10 +73,8 @@ ${contentMarkdown}`;
 	return read;
 }
 
-export function removeDoubleQuotes(str: string): string{
-	const result = str.replaceAll('"', '\\"')
-	console.log(result)
-	return result;
+export function removeDoubleQuotes(str: string): string {
+	return str.replaceAll('"', '\\"');
 }
 
 function addPrefix(str: string, prefix: string): string {
