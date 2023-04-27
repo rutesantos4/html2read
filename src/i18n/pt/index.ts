@@ -11,7 +11,8 @@ const pt = {
 	keywordsLabel: 'Palavra-chave',
 	keywordsTootipTitle: 'separa com virgulas (,)',
 	draftLabel: 'Rascunho',
-	generateButton: 'Gerar Read'
+	generateButton: 'Gerar Read',
+	copyToClipboard: 'Copiar para a área de transferência'
 } satisfies Translation;
 
 export default pt;

@@ -52,6 +52,10 @@ type RootTranslation = {
 	 * G​e​n​e​r​a​t​e​ ​R​e​a​d
 	 */
 	generateButton: string;
+	/**
+	 * C​o​p​y​ ​t​o​ ​c​l​i​p​b​o​a​r​d
+	 */
+	copyToClipboard: string;
 };
 
 export type TranslationFunctions = {
@@ -95,6 +99,10 @@ export type TranslationFunctions = {
 	 * Generate Read
 	 */
 	generateButton: () => LocalizedString;
+	/**
+	 * Copy to clipboard
+	 */
+	copyToClipboard: () => LocalizedString;
 };
 
 export type Formatters = {};
