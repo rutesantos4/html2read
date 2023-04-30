@@ -56,6 +56,10 @@ type RootTranslation = {
 	 * C​o​p​y​ ​t​o​ ​c​l​i​p​b​o​a​r​d
 	 */
 	copyToClipboard: string;
+	/**
+	 * D​o​w​n​l​o​a​d​ ​a​s​ ​f​i​l​e
+	 */
+	exportToFile: string;
 };
 
 export type TranslationFunctions = {
@@ -103,6 +107,10 @@ export type TranslationFunctions = {
 	 * Copy to clipboard
 	 */
 	copyToClipboard: () => LocalizedString;
+	/**
+	 * Download as file
+	 */
+	exportToFile: () => LocalizedString;
 };
 
 export type Formatters = {};

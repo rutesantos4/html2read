@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { TextInput, ReadForm, ReadTemplate, Error } from '@components';
 	import { LL } from '@i18n';
-	import { setReadTemplate } from '@http';
+	import { setReadTemplate, getFileName } from '@http';
 	import TurndownService from 'turndown';
 	import { ReadStore } from '@stores';
 
@@ -56,7 +56,10 @@
 		<div class="card mt-2">
 			<div class="card-body">
 				<section id="read-template">
-					<ReadTemplate readtemplate={$ReadStore.value.template} />
+					<ReadTemplate
+						readtemplate={$ReadStore.value.template}
+						fileName={getFileName($ReadStore.value)}
+					/>
 				</section>
 			</div>
 		</div>
