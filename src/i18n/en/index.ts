@@ -11,7 +11,9 @@ const en = {
 	keywordsLabel: 'Keywords',
 	keywordsTootipTitle: 'separate with comma (,)',
 	draftLabel: 'Draft',
-	generateButton: 'Generate Read'
+	generateButton: 'Generate Read',
+	copyToClipboard: 'Copy to clipboard',
+	exportToFile: 'Download as file'
 } satisfies BaseTranslation;
 
 export default en;

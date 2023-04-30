@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { TextInput, ReadForm, ReadTemplateInput, Error } from '@components';
+	import { TextInput, ReadForm, ReadTemplate, Error } from '@components';
 	import { LL } from '@i18n';
-	import { setReadTemplate } from '@http';
+	import { setReadTemplate, getFileName } from '@http';
 	import TurndownService from 'turndown';
 	import { ReadStore } from '@stores';
 
@@ -55,8 +55,11 @@
 	{#if $ReadStore.showingTemplate}
 		<div class="card mt-2">
 			<div class="card-body">
-				<section id="read-template-input">
-					<ReadTemplateInput readtemplate={$ReadStore.value.template} />
+				<section id="read-template">
+					<ReadTemplate
+						readtemplate={$ReadStore.value.template}
+						fileName={getFileName($ReadStore.value)}
+					/>
 				</section>
 			</div>
 		</div>
@@ -71,7 +74,7 @@
 		max-width: none;
 		padding: 0 !important;
 	}
-	#read-template-input,
+	#read-template,
 	#form {
 		padding: 2%;
 	}
