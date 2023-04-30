@@ -77,6 +77,17 @@ export function removeDoubleQuotes(str: string): string {
 	return str.replaceAll('"', '\\"');
 }
 
+export function getFileName(read: Read): string {
+	return (
+		read.title
+			.toLowerCase()
+			.replace(/[^a-z0-9- ]/g, '')
+			.replace(/\s+/g, ' ')
+			.trim()
+			.replaceAll(' ', '-') + '.md'
+	);
+}
+
 function addPrefix(str: string, prefix: string): string {
 	return str
 		.split('\n')
