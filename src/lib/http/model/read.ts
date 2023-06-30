@@ -49,8 +49,6 @@ export function setReadTemplate(read: Read, contentMarkdown: string): Read {
 	read.tags = read.categories + ', ' + read.keywords;
 	read.date = new Date();
 
-	contentMarkdown = addPrefix(contentMarkdown, '>');
-
 	read.template = `---
 title: "${removeDoubleQuotes(read.title)}"
 description: "${removeDoubleQuotes(read.description)}"
@@ -86,13 +84,6 @@ export function getFileName(read: Read): string {
 			.trim()
 			.replaceAll(' ', '-') + '.md'
 	);
-}
-
-function addPrefix(str: string, prefix: string): string {
-	return str
-		.split('\n')
-		.map((s) => `${prefix} ${s}`)
-		.join('\n');
 }
 
 function getTagsFormatted(read: Read): string {
