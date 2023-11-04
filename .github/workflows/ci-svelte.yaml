@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  publish:
+  continuous-integration:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: Format Code
-        run: npm run prettier
+        run: npm run format
 
       - name: Check Code
         run: npm run lint
