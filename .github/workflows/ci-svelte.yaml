@@ -1,0 +1,29 @@
+name: Svelte Continuous Integration
+on:
+  push:
+  pull_request:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+
+      - name: Clean install a project
+        run: npm ci
+
+      - name: Format Code
+        run: npm run prettier
+
+      - name: Check Code
+        run: npm run lint
+
+      - name: Test Code
+        run: npm run test
