@@ -181,3 +181,22 @@ test('Title with multiple spaces should return file name with only -', () => {
 	};
 	expect(getFileName(read)).toBe('50-title-file-name.md');
 });
+
+test('Should fail', () => {
+	const read: Read = {
+		title: '50  TiTle file | NAME',
+		categories: '',
+		content: '',
+		description: '',
+		date: new Date(),
+		document: document,
+		draft: false,
+		introduction: '',
+		keywords: '',
+		summary: '',
+		tags: '',
+		template: '',
+		url: ''
+	};
+	expect(getFileName(read)).toBe('fail.md');
+});
