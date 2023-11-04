@@ -1,7 +1,7 @@
 name: Svelte Continuous Integration
 on:
-  push:
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   continuous-integration:
